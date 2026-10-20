@@ -33,7 +33,7 @@ export default function AboutPage() {
             </div>
 
             <a 
-              href="/Gabriele_Di_Mezza_Resume.pdf" 
+              href="/documents/Gabriele_Di_Mezza_Resume.pdf" 
               download="Gabriele_Di_Mezza_Resume.pdf"
               className="inline-flex items-center gap-3 bg-blue-600 text-white font-bold py-4 px-8 rounded-xl hover:bg-blue-700 active:scale-[0.98] transition-all shadow-md shadow-blue-600/20"
             >
