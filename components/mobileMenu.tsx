@@ -1,22 +1,13 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "@/lib/navLinks";
 import { AnimatePresence, motion } from "motion/react";
 
 const MobileMenu = () => {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
-  // Chiude il menu quando cambia pagina
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setOpen(false);
-  }, [pathname]);
-
-  // Chiude il menu con il tasto Esc
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -25,6 +16,27 @@ const MobileMenu = () => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setOpen(false);
+
+    // Diamo tempo al menu di iniziare a chiudersi prima di scorrere
+    setTimeout(() => {
+      const targetId = href.replace("#", "");
+
+      if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      window.history.pushState(null, "", href);
+    }, 150);
+  };
+
   return (
     <div className="md:hidden">
       <button
@@ -32,39 +44,32 @@ const MobileMenu = () => {
         onClick={() => setOpen((prev) => !prev)}
         aria-label={open ? "close menu" : "open menu"}
         aria-expanded={open}
-        className="p-2 text-gray-700 hover:text-black transition-colors"
+        className="p-2 text-muted-foreground hover:text-foreground transition-colors"
       >
         {open ? <X size={24} /> : <Menu size={24} />}
       </button>
+
       <AnimatePresence>
         {open && (
           <motion.nav
-            className="absolute left-0 top-full w-full bg-background shadow-md bg-white"
+            className="absolute left-0 top-full w-full bg-background/95 backdrop-blur-md border-b border-border shadow-xl z-50"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            <ul className="flex flex-col px-6 py-4">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className={`block py-3 text-sm font-semibold border-l-2 pl-3 transition-colors ${
-                        isActive
-                          ? "border-black text-black"
-                          : "border-transparent text-gray-600 hover:text-black hover:border-black"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                );
-              })}
+            <ul className="flex flex-col px-6 py-4 space-y-1">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleScroll(e, link.href)}
+                    className="block py-3 text-sm font-semibold text-muted-foreground hover:text-foreground border-l-2 border-transparent hover:border-primary pl-3 transition-all"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </motion.nav>
         )}
