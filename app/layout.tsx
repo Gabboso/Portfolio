@@ -5,6 +5,8 @@ import Container from "@/components/container";
 import HeaderMenu from "@/components/headerMenu";
 import MobileMenu from "@/components/mobileMenu";
 import Footer from "@/components/footer";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -34,6 +36,10 @@ export default function DashboardLayout({
           <Container>{children}</Container>
         </main>
         <Footer />
+        {/* Traccia i visitatori */}
+        <Analytics />
+        {/* Traccia la velocità e le prestazioni */}
+        <SpeedInsights />
       </body>
     </html>
   );

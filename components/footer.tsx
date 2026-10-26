@@ -148,6 +148,7 @@ export default function Footer() {
             Built with{" "}
             <span className="text-zinc-300 font-semibold">Next.js</span> &amp;{" "}
             <span className="text-zinc-300 font-semibold">Tailwind CSS</span>
+              ciao
           </p>
         </div>
       </div>
