@@ -1,2 +1,14 @@
-UPDATE THE WEBSITE WITH ANCHORS. PUT EVERY PAGE IN THE HOME.
-THE NAV LINK WILL TAKE YOU TO THE ANCHOR
+NEXT
+
+Un piccolo trucco per modifiche "grandi"
+Se in futuro dovrai lavorare a una nuova funzionalità importante (es. aggiungere un blog o rifare la Navbar) e vuoi testarla online prima di metterla sul sito ufficiale, puoi usare i branch di Git:
+
+Crei un nuovo ramo sul tuo PC:
+
+Bash
+git checkout -b nuova-feature
+Lavori in locale con npm run dev.
+
+Quando fai il push di questo ramo (git push origin nuova-feature), Vercel ti creerà automaticamente un link di anteprima segreto (Preview Deployment).
+
+Potrai testare il sito online su quel link e, solo quando sarai sicuro al 100%, unire le modifiche al ramo principale (main).

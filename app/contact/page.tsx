@@ -8,44 +8,47 @@ import Container from "@/components/container";
 export default function ContactPage() {
   return (
     <div className="w-full bg-transparent text-zinc-100 font-sans py-12 lg:py-16 flex items-center">
-      <Container className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <Container className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* Informazioni di contatto */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full min-w-0"
         >
-          <h1 className="text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight text-white">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight text-white">
             Let&apos;s <span className="text-blue-500">talk</span>.
           </h1>
-          <p className="text-lg text-zinc-400 mb-12 max-w-md font-medium leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-400 mb-10 max-w-md font-medium leading-relaxed">
             Have a project in mind or just want to say hi? Feel free to reach out. I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions.
           </p>
 
-          <div className="space-y-6 mb-12">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full flex items-center justify-center">
+          <div className="space-y-6 mb-10">
+            {/* EMAIL BLOCK */}
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="shrink-0 w-12 h-12 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full flex items-center justify-center">
                 <Mail className="w-6 h-6" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider">Email</p>
                 <a 
                   href="mailto:gabrieledimezza05@gmail.com" 
-                  className="text-lg font-bold text-white hover:text-blue-400 transition-colors"
+                  className="block text-base sm:text-lg font-bold text-white hover:text-blue-400 transition-colors break-all sm:break-normal"
                 >
                   gabrieledimezza05@gmail.com
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full flex items-center justify-center">
+            {/* LOCATION BLOCK */}
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="shrink-0 w-12 h-12 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full flex items-center justify-center">
                 <MapPin className="w-6 h-6" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="text-xs text-zinc-400 font-bold uppercase tracking-wider">Location</p>
-                <p className="text-lg font-bold text-white">
+                <p className="text-base sm:text-lg font-bold text-white">
                   Delft, Netherlands
                 </p>
               </div>
@@ -88,7 +91,7 @@ export default function ContactPage() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="bg-zinc-900/40 backdrop-blur-md p-8 lg:p-10 rounded-3xl shadow-2xl border border-zinc-800/80"
+          className="bg-zinc-900/40 backdrop-blur-md p-6 sm:p-8 lg:p-10 rounded-3xl shadow-2xl border border-zinc-800/80 w-full min-w-0"
         >
           <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
             
